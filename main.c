@@ -25,8 +25,12 @@ void stripAndReplaceInvalidChars(char* str){
     }
 }
 
-void fileToArray(char* in_filename, char* out_filename){
+bool fileToArray(char* in_filename, char* out_filename){
     ByteArray* file = file_to_byte_array(in_filename);
+    if (!file){
+        fprintf(stderr, "\e[0;91mERROR\e[0m: INVALID INPUT FILE NAME\n");
+        return 0;
+    }
     FILE* out = fopen(out_filename, "w"); 
     stripAndReplaceInvalidChars(in_filename);
     fprintf(out, "const char %s[%d] = {", in_filename, file->bufsize);
@@ -39,6 +43,7 @@ void fileToArray(char* in_filename, char* out_filename){
     fprintf(out, "};\n");
     fclose(out);
     cleanup_bytearray(&file);
+    return 1;
 }
 
 int main(int argc, char** argv){
