@@ -6,7 +6,3 @@ git clone --recurse-submodules https://github.com/dg4l/file2array
 ```
 just run `make` and `./file2array {input file} {output file}`
 
-```shell
-git clone --recurse-submodules https://github.com/dg4l/file2array
-```
-just run `make` and `./file2array {input file} {output file}`
